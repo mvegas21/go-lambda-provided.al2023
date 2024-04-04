@@ -19,30 +19,30 @@ all the proccess can be automate in CI/CD
 Example:
 
 stages:
-  - build
-  - code
+  build
+  code
 
     stage: build
     image: golang:1.21.1
   before_script:
-    - go get github.com/aws/aws-lambda-go/lambda
+    go get github.com/aws/aws-lambda-go/lambda
   script:
-    - GOARCH=amd64 GOOS=linux go build -tags lambda.norpc -o bootstrap main.go
+    GOARCH=amd64 GOOS=linux go build -tags lambda.norpc -o bootstrap main.go
   artifacts:
     paths:
-      - bootstrap
+      bootstrap
 
   stage: code
   image: alpine
   dependencies:
-    - build  
+    build  
   before_script:
-    - apk add --update zip curl
+    apk add --update zip curl
   script:
-    - zip bootstrap.zip bootstrap
+    zip bootstrap.zip bootstrap
   artifacts:
     paths:
-      - bootstrap.zip
+      bootstrap.zip
     when: on_success 
 
 
