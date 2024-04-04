@@ -4,7 +4,7 @@ To run Go functions on
 ###  Lambda OS-only Runtime | Amazon Linux 2023 | provided.al2023
 
 Compiling:
-First create an boostrap file with this command:
+First create an bootstrap file with this command:
 
 ```
 GOARCH=amd64 GOOS=linux go build -o bootstrap main.go
